@@ -299,10 +299,9 @@
     <script defer type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
     <script>
     $(document).ready(function(){
-      $('.collection-slider').each(function(){
-        const slidesToScroll = $(this).data('slides');
-        $(this).slick({ slidesToScroll });
-      })
+      const slidesToShow = $(this).data('slides');
+      {% comment %} console.log('slidesToShow', slidesToShow) {% endcomment %}
+      $('.collection-slider').slick({ slidesToShow: 4 });
     })
     </script>
   </body>
