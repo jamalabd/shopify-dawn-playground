@@ -2951,4 +2951,27 @@ details-disclosure > details {
   .localization-form__select:focus {
     outline: transparent solid 1px;
   }
+
+}
+
+
+.collection-slider{
+  overflow: hidden;
+  padding-right: 25px;
+}
+.collection-slider .slick-track{
+  display: flex
+}
+
+.collection-slider .product-card{
+  width: 100%
+}
+
+.collection-slider .slick-prev{
+  left: 0;
+  z-index: 99999;
+}
+.collection-slider .slick-next{
+  right: 0;
+  z-index: 99999;
 }
