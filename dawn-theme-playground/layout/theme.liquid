@@ -338,7 +338,21 @@
         $(document).ready(function(){
           const slidesToShow = $(this).data('slides');
           $('.collection-slider').slick({ slidesToShow: 3,arrows: true, infinite: true,slidesToScroll: 1, centerMode: true, prevArrow: '<button class="slide-arrow prev-arrow-btn"></button>',
-            nextArrow: '<button class="slide-arrow next-arrow-btn"></button>'});
+            nextArrow: '<button class="slide-arrow next-arrow-btn"></button>',responsive: [{
+              breakpoint: 1024,
+              settings: {
+                slidesToShow: 2,
+                infinite: true,
+                arrows: false
+              }
+            }, {
+              breakpoint: 600,
+              settings: {
+                slidesToShow: 1,
+                infinite: true,
+                arrows: false
+              }
+            }]});
         })
         </script>
   </body>
