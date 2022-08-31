@@ -9,8 +9,7 @@
     <link rel="preconnect" href="https://cdn.shopify.com" crossorigin>
     
     <!-- Add the slick-theme.css if you want default styling -->
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
-
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
     {%- if settings.favicon != blank -%}
       <link rel="icon" type="image/png" href="{{ settings.favicon | image_url: width: 32, height: 32 }}">
     {%- endif -%}
@@ -217,6 +216,43 @@
           font-size: 1.6rem;
         }
       }
+ .collection-slider{
+  overflow: hidden;
+  padding-right: 25px;
+}
+.collection-slider .slick-track{
+  display: flex
+}
+
+.collection-slider .product-card-wrapper{
+  width: 100%
+}
+
+.prev-arrow-btn{
+  height: 1rem;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 3rem;
+  height: 3rem;
+  z-index: 99999;
+}
+.prev-arrow-btn::after{
+  content: '<';
+  font-size: 1rem;
+}
+.next-arrow-btn{
+  width: 3rem;
+  position: absolute;
+  height: 3rem;
+  right: 0;
+  bottom: 0;
+  z-index: 99999;
+}
+.next-arrow-btn::after{
+  content: '>';
+  font-size: 1rem;
+}
     {% endstyle %}
 
     {{ 'base.css' | asset_url | stylesheet_tag }}
@@ -296,14 +332,14 @@
     {%- endif -%}
     
     {% comment %} slick-slider {% endcomment %}
-    <script defer src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
     <script defer type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
-    <script defer>
-    $(document).ready(function(){
-      const slidesToShow = $(this).data('slides');
-      {% comment %} console.log('slidesToShow', slidesToShow) {% endcomment %}
-      $('.collection-slider').slick({ slidesToShow: 4 });
-    })
-    </script>
+      <script defer>
+        $(document).ready(function(){
+          const slidesToShow = $(this).data('slides');
+          $('.collection-slider').slick({ slidesToShow: 3,arrows: true, infinite: true,slidesToScroll: 1, centerMode: true, prevArrow: '<button class="slide-arrow prev-arrow-btn"></button>',
+            nextArrow: '<button class="slide-arrow next-arrow-btn"></button>'});
+        })
+        </script>
   </body>
 </html>
