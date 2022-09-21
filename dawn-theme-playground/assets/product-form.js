@@ -50,7 +50,9 @@ if (!customElements.get('product-form')) {
             window.location = window.routes.cart_url;
             return;
           }
-
+               
+          if($('#variant-checkbox')[0].checked) this.addVariant();
+              
           this.error = false;
           const quickAddModal = this.closest('quick-add-modal');
           if (quickAddModal) {
@@ -71,6 +73,30 @@ if (!customElements.get('product-form')) {
           if (!this.error) this.submitButton.removeAttribute('aria-disabled');
           this.querySelector('.loading-overlay__spinner').classList.add('hidden');
         });
+    }
+    
+    async addVariant(){
+      const UpSaleProduct = await $.getJSON(window.Shopify.routes.root + 'products/portable-instant-stain-remover-pen-1214057289', (data)=> data);
+
+      const variantId = UpSaleProduct.product.variants[0].id;
+
+      const settings = {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({
+          'items': [{
+           'id': variantId,
+           'quantity': 1
+         }]})
+      };
+
+      const response = await fetch(window.Shopify.routes.root + 'cart/add.js', settings);
+
+      const data = await response.json();
+
+      this.cart.renderContents(data.items[0]);
+      // window.location.reload();
+      $('#variant-checkbox')[0].checked = false;
     }
 
     handleErrorMessage(errorMessage = false) {

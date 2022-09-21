@@ -699,9 +699,24 @@
           {{ 'products.product.view_full_details' | t }}
           {% render 'icon-arrow' %}
         </a>
+        {% comment %} Add product variant to cart checkbox {% endcomment %}
+      <div>Would you like to add?</div>
+      {% for product in collections['Up-sale-variant'].products %}
+        <input
+          type="checkbox"
+          id="variant-checkbox"
+          name="properties[variant-checkbox]"
+        >
+          {% assign imag = product.image.src %}
+        <label>{{ product.title }} <img loading="lazy" src="https://cdn.shopify.com/s/files/1/0658/4251/2127/products/Cleaning-Brushes-Portable-Clothes-Instant-Stain-Remover-Pen-Grease-Detergent-Emergency-Decontamination-Cleaning-Stick_f6ef51f2-a325-4adb-92ac-97f4b444a40a.jpg?v=1662581973"
+          width='20' height='20' style="margin:0;"><label>
+      {% endfor %} 
       </div>
+      
     </div>
+    
     {%- if section.settings.media_position == 'right' -%}
+
       <div class="grid__item product__media-wrapper small-hide">
         <media-gallery
           id="MediaGallery-{{ section.id }}-right"
